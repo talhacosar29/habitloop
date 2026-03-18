@@ -12,24 +12,33 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
-      --bg: #050910;
-      --bg-alt: #0b1220;
-      --card: #0f172a;
+      --bg: #020617;
+      --bg-alt: rgba(15,23,42,0.92);
+      --card: rgba(15,23,42,0.9);
       --accent: #22c55e;
       --accent-soft: rgba(34,197,94,0.1);
+      --accent-strong: rgba(34,197,94,0.3);
       --text: #e5e7eb;
       --text-soft: #9ca3af;
-      --max-width: 1040px;
-      --radius-lg: 24px;
-      --radius-md: 16px;
+      --border-subtle: rgba(148,163,184,0.35);
+      --max-width: 1080px;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --blur: 22px;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
                    "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #1e293b 0, #020617 38%, #000 100%);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 55%),
+        radial-gradient(circle at top right, rgba(129,140,248,0.18), transparent 55%),
+        radial-gradient(circle at bottom, rgba(34,197,94,0.18), transparent 55%),
+        #020617;
       color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -39,61 +48,139 @@
       display: flex;
       flex-direction: column;
     }
-    header { padding: 20px 20px 0; }
-    .nav {
+    header { padding: 18px 20px 0; position: sticky; top: 0; z-index: 20; }
+    .nav-shell {
       max-width: var(--max-width);
       margin: 0 auto;
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: linear-gradient(90deg, rgba(15,23,42,0.96), rgba(15,23,42,0.92));
+      border: 1px solid rgba(148,163,184,0.35);
+      backdrop-filter: blur(var(--blur));
+      box-shadow: 0 18px 60px rgba(15,23,42,0.9);
+    }
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 18px;
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 18px;
+      gap: 12px;
     }
     .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 12px;
-      background: radial-gradient(circle at 20% 0%, #facc15, #22c55e 60%, #0ea5e9 100%);
-      box-shadow: 0 0 20px rgba(34,197,94,0.6);
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 15% 0%, #facc15 0, #22c55e 40%, #0ea5e9 78%, #6366f1 100%);
+      box-shadow:
+        0 0 0 1px rgba(15,23,42,0.9),
+        0 0 30px rgba(34,197,94,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .logo-title {
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    .logo-subtitle {
+      font-size: 11px;
+      color: var(--text-soft);
     }
     .nav-links {
       display: flex;
-      gap: 20px;
-      font-size: 14px;
-    }
-
-    main { flex: 1; padding: 20px; }
-    .hero {
-      max-width: var(--max-width);
-      margin: 40px auto 0;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 32px;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--text-soft);
       align-items: center;
     }
-    @media (max-width: 800px) {
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      padding: 4px 0;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+    }
+    .nav-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.45);
+      color: var(--text-soft);
+    }
+
+    main { flex: 1; padding: 26px 20px 20px; }
+    .hero {
+      max-width: var(--max-width);
+      margin: 26px auto 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 30px;
+      align-items: center;
+    }
+    @media (max-width: 880px) {
+      header { position: static; }
+      .nav-shell { border-radius: 18px; padding-inline: 14px; }
+      .nav-links { display: none; }
       .hero {
         grid-template-columns: minmax(0,1fr);
-        margin-top: 24px;
+        margin-top: 22px;
       }
     }
+    .hero-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 16px rgba(34,197,94,0.8);
+    }
     .hero-title {
-      font-size: clamp(32px, 4vw, 40px);
+      font-size: clamp(34px, 4.4vw, 44px);
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.045em;
       margin-bottom: 12px;
+      line-height: 1.03;
+    }
+    .hero-title span {
+      background: linear-gradient(120deg, #22c55e, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
     }
     .hero-subtitle {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-soft);
-      max-width: 460px;
-      margin-bottom: 20px;
+      max-width: 470px;
+      margin-bottom: 18px;
     }
     .hero-badges {
       display: flex;
@@ -107,27 +194,47 @@
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,0.6);
       color: var(--text-soft);
+      background: rgba(15,23,42,0.85);
     }
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
       margin-bottom: 16px;
     }
-    .btn-primary {
-      border: none;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 10px 18px;
-      background: linear-gradient(135deg, #22c55e, #4ade80);
-      color: #022c22;
-      font-weight: 700;
-      font-size: 14px;
+    .store-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .store-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 12px 30px rgba(34,197,94,0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.55);
+      background: rgba(15,23,42,0.9);
+      color: var(--text);
+      font-size: 11px;
+      text-decoration: none;
+      min-width: 160px;
+    }
+    .store-badge span {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .store-badge-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      color: var(--text-soft);
+    }
+    .store-badge-platform {
+      font-size: 13px;
+      font-weight: 600;
     }
     .btn-secondary {
       border-radius: 999px;
@@ -138,19 +245,25 @@
       font-size: 13px;
       cursor: pointer;
     }
+    .btn-secondary:hover {
+      color: var(--text);
+      border-color: var(--accent-strong);
+    }
     .hero-note {
       font-size: 12px;
       color: var(--text-soft);
     }
 
     .hero-card {
-      border-radius: var(--radius-lg);
-      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.14), transparent 55%),
-                  radial-gradient(circle at 100% 0, rgba(129,140,248,0.15), transparent 60%),
-                  var(--bg-alt);
-      padding: 20px 18px;
-      box-shadow: 0 20px 60px rgba(15,23,42,0.85);
-      border: 1px solid rgba(148,163,184,0.35);
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      background:
+        linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.97)),
+        radial-gradient(circle at 0 0, rgba(56,189,248,0.2), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129,140,248,0.22), transparent 60%);
+      box-shadow: 0 26px 90px rgba(15,23,42,0.96);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(var(--blur));
     }
     .hero-card-header {
       display: flex;
@@ -162,15 +275,30 @@
       font-size: 11px;
       padding: 3px 10px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.8);
-      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.55);
       color: var(--text-soft);
     }
     .hero-card-main {
-      border-radius: 18px;
-      padding: 16px 14px;
-      background: rgba(15,23,42,0.95);
+      border-radius: 20px;
+      padding: 16px 14px 14px;
+      background: rgba(15,23,42,0.98);
       border: 1px solid rgba(148,163,184,0.4);
+    }
+    .hero-habit-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .hero-habit-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .hero-progress {
       margin-top: 10px;
@@ -196,26 +324,34 @@
 
     .section {
       max-width: var(--max-width);
-      margin: 48px auto 0;
+      margin: 46px auto 0;
       display: grid;
-      grid-template-columns: minmax(0,1.1fr) minmax(0,0.9fr);
+      grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr);
       gap: 24px;
     }
-    @media (max-width: 800px) {
+    @media (max-width: 880px) {
       .section {
         grid-template-columns: minmax(0,1fr);
       }
     }
     .section-card {
-      background: rgba(15,23,42,0.9);
+      background: var(--card);
       border-radius: var(--radius-lg);
       padding: 18px 18px 16px;
-      border: 1px solid rgba(148,163,184,0.4);
+      border: 1px solid rgba(148,163,184,0.42);
+      box-shadow: 0 14px 48px rgba(15,23,42,0.75);
     }
     .section-title {
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+    }
+    .section-eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      margin-bottom: 4px;
     }
     .feature-list {
       list-style: none;
@@ -256,26 +392,41 @@
 <body>
 <div class="page">
   <header>
-    <div class="nav">
-      <div class="logo">
-        <div class="logo-mark"></div>
-        <span>Habitforge</span>
+    <div class="nav-shell">
+      <div class="nav">
+        <div class="logo">
+          <div class="logo-mark">
+            <img src="assets/images/habitLoopLogo.png" alt="Habitloog logo" />
+          </div>
+          <div class="logo-text">
+            <div class="logo-title">HABITFORGE</div>
+            <div class="logo-subtitle">Build strong habits</div>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <span class="nav-pill">New · Beta release</span>
+          <a href="#features">Features</a>
+          <a href="#privacy">Privacy</a>
+          <a href="mailto:hello@habitforge.app">Support</a>
+        </nav>
       </div>
-      <nav class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#privacy">Privacy</a>
-        <a href="mailto:hello@habitforge.app">Support</a>
-      </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div>
-        <h1 class="hero-title">Build strong habits, one small step at a time.</h1>
+        <div class="hero-kicker">
+          <span class="hero-kicker-dot"></span>
+          Habit tracker for makers
+        </div>
+        <h1 class="hero-title">
+          Build strong habits,<br />
+          <span>without burning out.</span>
+        </h1>
         <p class="hero-subtitle">
-          Habitforge helps you turn daily routines into long‑term habits with streaks, a simple score,
-          smart suggestions, and beautiful widgets.
+          Habitforge turns your daily routines into a game of streaks, XP and tiny wins —
+          with smart suggestions when life gets busy.
         </p>
         <div class="hero-badges">
           <span class="badge">No accounts – all data on device</span>
@@ -283,10 +434,21 @@
           <span class="badge">Home screen &amp; lock screen widgets</span>
         </div>
         <div class="hero-cta-row">
-          <!-- TODO: gerçek store linklerini ekle -->
-          <a class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">
-            Download on the App Store / Google Play
-          </a>
+          <div class="store-buttons">
+            <!-- TODO: gerçek store linklerini ekle -->
+            <a class="store-badge" href="#" target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="store-badge-title">Get it on</span>
+                <span class="store-badge-platform">Google Play</span>
+              </span>
+            </a>
+            <a class="store-badge" href="#" target="_blank" rel="noopener noreferrer">
+              <span>
+                <span class="store-badge-title">Download on the</span>
+                <span class="store-badge-platform">App Store</span>
+              </span>
+            </a>
+          </div>
           <button class="btn-secondary" type="button"
                   onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
             See how it works
@@ -306,8 +468,8 @@
           <span class="pill">Level 4 · Builder</span>
         </div>
         <div class="hero-card-main">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="width:28px;height:28px;border-radius:999px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;">
+          <div class="hero-habit-row">
+            <div class="hero-habit-icon">
               <span style="font-size:16px;">🏃‍♂️</span>
             </div>
             <div style="flex:1;">
@@ -331,6 +493,7 @@
 
     <section id="features" class="section">
       <div class="section-card">
+        <div class="section-eyebrow">Why Habitforge</div>
         <h2 class="section-title">Designed for real life</h2>
         <ul class="feature-list">
           <li><strong>Fast daily check‑ins</strong> – complete habits with a single tap, or record minutes/pages.</li>
@@ -342,7 +505,8 @@
       </div>
 
       <div class="section-card">
-        <h2 class="section-title">For makers who love focus</h2>
+        <div class="section-eyebrow">For makers who love focus</div>
+        <h2 class="section-title">Stay consistent without obsessing</h2>
         <ul class="feature-list">
           <li><strong>Category based templates</strong> – sport, health, reading, routines, quit goals and more.</li>
           <li><strong>Difficulty &amp; XP</strong> – harder habits give more XP so your effort is rewarded.</li>
