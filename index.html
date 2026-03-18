@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Habitforge – Build Strong Habits</title>
+  <meta name="description"
+        content="Habitforge is a simple, powerful habit tracker with streaks, score, widgets, and smart suggestions to help you stay consistent." />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+        integrity="sha512-iZ1I9G5HUnP2pXo6aCa591TpxBTOcxK36NJQ4XU5Ksf3hpmyVap5oz8NwUuCydE4WBWr+JMq9eY5Bq5BzI12wg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #050910;
+      --bg-alt: #0b1220;
+      --card: #0f172a;
+      --accent: #22c55e;
+      --accent-soft: rgba(34,197,94,0.1);
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --max-width: 1040px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 38%, #000 100%);
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header { padding: 20px 20px 0; }
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 18px;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 0%, #facc15, #22c55e 60%, #0ea5e9 100%);
+      box-shadow: 0 0 20px rgba(34,197,94,0.6);
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    main { flex: 1; padding: 20px; }
+    .hero {
+      max-width: var(--max-width);
+      margin: 40px auto 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 32px;
+      align-items: center;
+    }
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+        margin-top: 24px;
+      }
+    }
+    .hero-title {
+      font-size: clamp(32px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-soft);
+      max-width: 460px;
+      margin-bottom: 20px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      color: var(--text-soft);
+    }
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .btn-primary {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 12px 30px rgba(34,197,94,0.35);
+    }
+    .btn-secondary {
+      border-radius: 999px;
+      padding: 9px 16px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: transparent;
+      color: var(--text-soft);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .hero-note {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.14), transparent 55%),
+                  radial-gradient(circle at 100% 0, rgba(129,140,248,0.15), transparent 60%),
+                  var(--bg-alt);
+      padding: 20px 18px;
+      box-shadow: 0 20px 60px rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.35);
+    }
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .pill {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--text-soft);
+    }
+    .hero-card-main {
+      border-radius: 18px;
+      padding: 16px 14px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+    .hero-progress {
+      margin-top: 10px;
+      background: rgba(15,23,42,1);
+      border-radius: 999px;
+      overflow: hidden;
+      height: 6px;
+      position: relative;
+    }
+    .hero-progress-bar {
+      position: absolute;
+      inset: 0;
+      width: 76%;
+      background: linear-gradient(90deg,#22c55e,#a855f7);
+    }
+    .hero-small {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 48px auto 0;
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,0.9fr);
+      gap: 24px;
+    }
+    @media (max-width: 800px) {
+      .section {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+    .section-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+    .feature-list li {
+      margin-bottom: 8px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+    .feature-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(15,23,42,0.9);
+      margin-top: 40px;
+      padding: 12px 20px 20px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <span>Habitforge</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="mailto:hello@habitforge.app">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">Build strong habits, one small step at a time.</h1>
+        <p class="hero-subtitle">
+          Habitforge helps you turn daily routines into long‑term habits with streaks, a simple score,
+          smart suggestions, and beautiful widgets.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">No accounts – all data on device</span>
+          <span class="badge">Daily streaks &amp; XP levels</span>
+          <span class="badge">Home screen &amp; lock screen widgets</span>
+        </div>
+        <div class="hero-cta-row">
+          <!-- TODO: gerçek store linklerini ekle -->
+          <a class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+            Download on the App Store / Google Play
+          </a>
+          <button class="btn-secondary" type="button"
+                  onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+            See how it works
+          </button>
+        </div>
+        <p class="hero-note">
+          Habitforge is currently in beta. Some features may change before the final release.
+        </p>
+      </div>
+
+      <div class="hero-card" aria-hidden="true">
+        <div class="hero-card-header">
+          <div>
+            <div style="font-size:11px;color:var(--text-soft);margin-bottom:2px;">Today</div>
+            <div style="font-size:14px;font-weight:600;">3 / 4 habits completed</div>
+          </div>
+          <span class="pill">Level 4 · Builder</span>
+        </div>
+        <div class="hero-card-main">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:28px;height:28px;border-radius:999px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:16px;">🏃‍♂️</span>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:600;">Running / Cardio</div>
+              <div style="font-size:11px;color:var(--text-soft);">30 / 30 min</div>
+            </div>
+            <div style="font-size:11px;padding:4px 8px;border-radius:999px;background:rgba(22,163,74,0.12);color:#4ade80;">
+              Streak · 7 days
+            </div>
+          </div>
+          <div class="hero-progress">
+            <div class="hero-progress-bar"></div>
+          </div>
+          <div class="hero-small">
+            <span>Each check is one step closer.</span>
+            <span>+10 XP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-card">
+        <h2 class="section-title">Designed for real life</h2>
+        <ul class="feature-list">
+          <li><strong>Fast daily check‑ins</strong> – complete habits with a single tap, or record minutes/pages.</li>
+          <li><strong>Streaks &amp; score</strong> – see your day at a glance with a simple score and streak levels.</li>
+          <li><strong>Smart suggestions</strong> – Habitforge notices when a goal is too heavy and suggests adjusting it.</li>
+          <li><strong>Widgets &amp; live timers</strong> – keep habits visible on your home screen and lock screen.</li>
+          <li><strong>No account needed</strong> – everything works offline; optionally sync via your own backups.</li>
+        </ul>
+      </div>
+
+      <div class="section-card">
+        <h2 class="section-title">For makers who love focus</h2>
+        <ul class="feature-list">
+          <li><strong>Category based templates</strong> – sport, health, reading, routines, quit goals and more.</li>
+          <li><strong>Difficulty &amp; XP</strong> – harder habits give more XP so your effort is rewarded.</li>
+          <li><strong>Stats &amp; heatmaps</strong> – see which days and times you are most consistent.</li>
+          <li><strong>Thoughtful notifications</strong> – quiet hours, gentle reminders, and countdown timers.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="privacy" class="section" style="margin-top:40px;">
+      <div class="section-card">
+        <h2 class="section-title">Privacy first</h2>
+        <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">
+          Habitforge is built so that your data stays on your device by default.
+          We don’t require an account or email to use the app.
+        </p>
+        <ul class="feature-list">
+          <li>Habits, completions, notes and stats are stored locally on your phone.</li>
+          <li>Notifications are scheduled on your device; we don’t send push notifications from our servers.</li>
+          <li>You can export your data at any time from Settings.</li>
+        </ul>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:14px;">
+          See the full <a href="privacy.html">Privacy Policy</a> for more details.
+        </p>
+      </div>
+
+      <div class="section-card">
+        <h2 class="section-title">Get in touch</h2>
+        <p style="font-size:13px;color:var(--text-soft);">
+          Have feedback, found a bug, or want to suggest a feature?
+          Send an email to <a href="mailto:hello@habitforge.app">hello@habitforge.app</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Habitforge</span>
+      <span><a href="privacy.html">Privacy Policy</a></span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
+
