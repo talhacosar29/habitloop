@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Habitforge – Build Strong Habits</title>
+  <title>HabitLoop – Build Strong Habits</title>
   <meta name="description"
-        content="Habitforge is a simple, powerful habit tracker with streaks, score, widgets, and smart suggestions to help you stay consistent." />
+        content="HabitLoop is a simple, powerful habit tracker with streaks, score, widgets, and smart suggestions to help you stay consistent." />
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
         integrity="sha512-iZ1I9G5HUnP2pXo6aCa591TpxBTOcxK36NJQ4XU5Ksf3hpmyVap5oz8NwUuCydE4WBWr+JMq9eY5Bq5BzI12wg=="
@@ -173,7 +173,8 @@
     }
     .hero-title span {
       background: linear-gradient(120deg, #22c55e, #a855f7);
-      -webkit-background-clip: text;
+      -webkit-background-clip: text;  /* Safari ve Chrome için */
+      background-clip: text;          /* Diğer tarayıcılar için */
       color: transparent;
     }
     .hero-subtitle {
@@ -399,7 +400,7 @@
             <img src="assets/images/habitLoopLogo.png" alt="Habitloog logo" />
           </div>
           <div class="logo-text">
-            <div class="logo-title">HABITFORGE</div>
+            <div class="logo-title">HABITLOOP</div>
             <div class="logo-subtitle">Build strong habits</div>
           </div>
         </div>
@@ -407,7 +408,7 @@
           <span class="nav-pill">New · Beta release</span>
           <a href="#features">Features</a>
           <a href="#privacy">Privacy</a>
-          <a href="mailto:hello@habitforge.app">Support</a>
+          <a href="mailto:app.habitloop@gmail.com">Support</a>
         </nav>
       </div>
     </div>
@@ -425,7 +426,7 @@
           <span>without burning out.</span>
         </h1>
         <p class="hero-subtitle">
-          Habitforge turns your daily routines into a game of streaks, XP and tiny wins —
+          HabitLoop turns your daily routines into a game of streaks, XP and tiny wins —
           with smart suggestions when life gets busy.
         </p>
         <div class="hero-badges">
@@ -455,7 +456,7 @@
           </button>
         </div>
         <p class="hero-note">
-          Habitforge is currently in beta. Some features may change before the final release.
+          HabitLoop is currently in beta. Some features may change before the final release.
         </p>
       </div>
 
@@ -493,12 +494,12 @@
 
     <section id="features" class="section">
       <div class="section-card">
-        <div class="section-eyebrow">Why Habitforge</div>
+        <div class="section-eyebrow">Why HabitLoop</div>
         <h2 class="section-title">Designed for real life</h2>
         <ul class="feature-list">
           <li><strong>Fast daily check‑ins</strong> – complete habits with a single tap, or record minutes/pages.</li>
           <li><strong>Streaks &amp; score</strong> – see your day at a glance with a simple score and streak levels.</li>
-          <li><strong>Smart suggestions</strong> – Habitforge notices when a goal is too heavy and suggests adjusting it.</li>
+          <li><strong>Smart suggestions</strong> – HabitLoop notices when a goal is too heavy and suggests adjusting it.</li>
           <li><strong>Widgets &amp; live timers</strong> – keep habits visible on your home screen and lock screen.</li>
           <li><strong>No account needed</strong> – everything works offline; optionally sync via your own backups.</li>
         </ul>
@@ -520,7 +521,7 @@
       <div class="section-card">
         <h2 class="section-title">Privacy first</h2>
         <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">
-          Habitforge is built so that your data stays on your device by default.
+          HabitLoop is built so that your data stays on your device by default.
           We don’t require an account or email to use the app.
         </p>
         <ul class="feature-list">
@@ -537,7 +538,7 @@
         <h2 class="section-title">Get in touch</h2>
         <p style="font-size:13px;color:var(--text-soft);">
           Have feedback, found a bug, or want to suggest a feature?
-          Send an email to <a href="mailto:hello@habitforge.app">hello@habitforge.app</a>.
+          Send an email to <a href="mailto:app.habitloop@gmail.com">app.habitloop@gmail.com</a>.
         </p>
       </div>
     </section>
@@ -545,7 +546,7 @@
 
   <footer>
     <div class="footer-inner">
-      <span>© <span id="year"></span> Habitforge</span>
+      <span>© <span id="year"></span> HabitLoop</span>
       <span><a href="privacy.html">Privacy Policy</a></span>
     </div>
   </footer>
