@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Download HabitLoop</title>
+  <meta name="description" content="Download HabitLoop on the App Store or Google Play." />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+        integrity="sha512-iZ1I9G5HUnP2pXo6aCa591TpxBTOcxK36NJQ4XU5Ksf3hpmyVap5oz8NwUuCydE4WBWr+JMq9eY5Bq5BzI12wg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #020617;
+      --card: rgba(15, 23, 42, 0.92);
+      --accent: #22c55e;
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border: rgba(148, 163, 184, 0.4);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 50%),
+        radial-gradient(circle at bottom, rgba(34, 197, 94, 0.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9), 0 0 24px rgba(34, 197, 94, 0.35);
+    }
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand-title {
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 0 0 8px;
+      line-height: 1.2;
+    }
+    .lead {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin: 0 0 22px;
+      line-height: 1.45;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 16px 48px rgba(15, 23, 42, 0.85);
+    }
+    .stores {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .store-btn {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .store-btn:hover {
+      border-color: rgba(34, 197, 94, 0.45);
+      background: rgba(15, 23, 42, 1);
+    }
+    .store-btn small {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+    .store-btn strong {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .redirect-msg {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-align: center;
+      margin: 0;
+      padding: 12px 0;
+    }
+    .redirect-msg[hidden] {
+      display: none;
+    }
+    .back {
+      margin-top: 20px;
+      font-size: 13px;
+      text-align: center;
+    }
+    .back a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="brand" href="../index.html">
+      <div class="brand-mark">
+        <img src="../assets/images/habitLoopLogo.png" alt="" width="44" height="44" />
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">HabitLoop</span>
+        <span class="brand-sub">Track your habits</span>
+      </div>
+    </a>
+
+    <p id="redirecting" class="redirect-msg" hidden>Opening the store…</p>
+
+    <div id="chooser">
+      <h1>Download HabitLoop</h1>
+      <p class="lead">Pick your platform. On a phone we send you straight to the right store.</p>
+      <div class="card">
+        <div class="stores">
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.talhacosar.habitforge&amp;hl=tr" rel="noopener noreferrer">
+            <small>Get it on</small>
+            <strong>Google Play</strong>
+          </a>
+          <a class="store-btn" href="https://apps.apple.com/tr/app/habitloop-track-your-habits/id6760732205?l=tr" rel="noopener noreferrer">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </a>
+        </div>
+      </div>
+      <p class="back"><a href="../index.html">← Back to website</a></p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var PLAY =
+        "https://play.google.com/store/apps/details?id=com.talhacosar.habitforge&hl=tr";
+      var APP_STORE =
+        "https://apps.apple.com/tr/app/habitloop-track-your-habits/id6760732205?l=tr";
+
+      var ua = navigator.userAgent || "";
+      var isAndroid = /Android/i.test(ua);
+      var isIOS =
+        /iPad|iPhone|iPod/i.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      var chooser = document.getElementById("chooser");
+      var redirecting = document.getElementById("redirecting");
+
+      if (isAndroid) {
+        if (chooser) chooser.hidden = true;
+        if (redirecting) redirecting.hidden = false;
+        window.location.replace(PLAY);
+        return;
+      }
+      if (isIOS) {
+        if (chooser) chooser.hidden = true;
+        if (redirecting) redirecting.hidden = false;
+        window.location.replace(APP_STORE);
+        return;
+      }
+    })();
+  </script>
+</body>
+</html>
